@@ -1,0 +1,40 @@
+<script>
+    $(function () {
+        var myTree = $("#jstreeDiv").jstree({ "core" : {
+            "theme" : {
+                "variant" : "large"
+            },
+            "checkbox" : {
+                "keep_selected_style" : false
+            },
+            "plugins" : ["core", "themes", "html_data", "ui"],
+            "data" : <%= system_tree(@systems).html_safe   %>
+        }
+        });
+
+        myTree.bind("select_node.jstree", function (event, data) {
+          //console.log(data);
+          nodeId = data.node.id;
+          //console.log("Node ID: " + nodeId.toString());
+          //console.log("Node Text: " + data.node.text);
+          //console.log("Node HREF: " + data.node.a_attr['href'].toString());
+          var systemURL = data.node.a_attr['href'].toString();
+          //var systemURL = "/systems/" + data.node.id.toString();
+          //var systemURL = "systems/" + data.node.id.toString();
+
+          jQuery.ajaxSetup({
+              'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+          });
+
+          $.get(systemURL, null, null, "script");
+
+        });
+
+    });
+</script>
+
+
+<div id="add_systems_div" class="system_cell" style="background-color:#A9BCF5;width:200px;">
+    <%= button_to  "Add System", "/systems/new", :method => :get , remote: true%>
+    <div id="jstreeDiv" class="system_cell" style="background-color:#ACFA58;width:200px;"></div>
+</div>

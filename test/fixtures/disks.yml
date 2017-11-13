@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  device_name: MyString
+  model: MyString
+  vendor_id: MyString
+  product_id: MyString
+  serail: MyString
+  revision: MyString
+  size: MyString
+  media_type: MyString
+  interface: MyString
+  state: MyString
+  location: MyString
+  appliance: one
+
+two:
+  device_name: MyString
+  model: MyString
+  vendor_id: MyString
+  product_id: MyString
+  serail: MyString
+  revision: MyString
+  size: MyString
+  media_type: MyString
+  interface: MyString
+  state: MyString
+  location: MyString
+  appliance: two

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manufacturer: MyString
+  model: MyString
+  serial: MyString
+  guid: MyString
+  ip_addr: MyString
+  user_name: MyString
+  password: MyString
+  url: MyString
+  system: one
+
+two:
+  manufacturer: MyString
+  model: MyString
+  serial: MyString
+  guid: MyString
+  ip_addr: MyString
+  user_name: MyString
+  password: MyString
+  url: MyString
+  system: two

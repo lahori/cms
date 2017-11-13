@@ -1,0 +1,32 @@
+<div id="new_system" style="background-color: #ffcccc;">
+  <h3>Edit NexentaStor System</h3>
+  <%= form_for @system, :remote => true do |f| %>
+      <% if @system.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@system.errors.count, "error") %> prohibited this system from being saved:</h2>
+
+            <ul>
+              <% @system.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <%= f.label("System Name") %>
+      <%= f.text_field(:name) %>
+      <br>
+      <%= f.label("Purpose") %>
+      <%= f.text_field(:purpose) %>
+      <br>
+      <%= f.label("System Type") %>
+      <%= f.select(:system_type, [['Appliance', 'Appliance'], ['HA Cluster', 'HA Cluster']]) %>
+      <br>
+      <%= f.label("Status") %>
+      <%= f.text_field(:status) %>
+      <br>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+  <% end %>
+</div>

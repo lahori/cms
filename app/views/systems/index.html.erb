@@ -1,0 +1,13 @@
+<div id="system_tab">
+  <div class="system_table">
+
+    <div class="systems_row">
+
+      <%= render partial: "systems_tree", object: @systems %>
+      <div id="system_div" class="system_cell" style="padding:10px;">
+        <%= render partial: 'show_system' %>
+      </div>
+
+    </div>
+  </div>
+</div>

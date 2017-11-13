@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CMS</title>
+  <%= stylesheet_link_tag    "jquery-ui.css", :media => "all" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "jquery.js" %>
+  <%= javascript_include_tag "jquery-ui.js" %>
+  <%= javascript_include_tag "jstree.js" %>
+  <%= javascript_include_tag "application" %>
+
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<div id="menu_tabs">
+  <ul>
+    <li><a href="#system_tab">Systems</a></li>
+    <li><a href="#context_tab">Context</a></li>
+    <li><a href="#tabs-3">Repo</a></li>
+    <li><a href="#tabs-4">iSCSI</a></li>
+    <div style="display: table;">
+      <div style="display: table-row;">
+        <div style="display: table-cell; width: 400px;">
+          <b style="float: right"> Welcome to Nexenta QA - Automation </b>
+        </div>
+        <div style="display: table-cell;">
+          <img src="/assets/nexenta_logo.jpg" style="float: right; padding-top: 5px; width: 50%; height: 30%"></img>
+        </div>
+      </div>
+    </div>
+  </ul>
+</div>
+<%= yield %>
+
+<div id="context_tab">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </p>
+</div>
+<div id="tabs-3">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </p>
+</div>
+<div id="tabs-4">
+  <p>ed ut perspiciatis unde omnis iste natus error sit
+    voluptatem accusantium doloremque laudantium, totam rem aperiam.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  </p>
+</div>
+<div id="footer">Copyright 2005-2014 © Nexenta Systems, Inc.</div>
+
+</body>
+</html>

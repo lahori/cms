@@ -1,0 +1,54 @@
+<div style="display: table; padding: 40px; width: 60%;">
+
+	<div style="display: table; width: 100%; border: 1px solid black;">
+		<div style="display: table-row;">
+			<div style="display: table-cell; width: 100%; background-color: #ddd;font-size: medium;"><strong>System Information</strong></div>
+		</div>	
+	</div>
+	<div id="system_info" style="display: table; width: 100%; border: 1px solid black;">
+				
+		<div style="display: table-row;">
+			<div style="display: table-cell;text-align: right;width: 20%;border-bottom: 1px solid black;border-right: 1px solid black;">
+				<label>Name</label>
+			</div>
+			<div style="display: table-cell;padding-left: 20px;border-bottom: 1px solid black;">
+				<%= @system.name %>
+			</div>
+		</div>
+		<div style="display: table-row;">
+			<div style="display: table-cell;text-align: right;width: 20%;border-bottom: 1px solid black; border-right: 1px solid black;">
+				<label>Purpose</label>
+			</div>
+			<div style="display: table-cell;padding-left: 20px;border-bottom: 1px solid black;">
+				<%= @system.purpose %>
+			</div>
+		</div>
+		<div style="display: table-row;">
+			<div style="display: table-cell;text-align: right;width: 20%;border-bottom: 1px solid black; border-right: 1px solid black;">
+				<label>Type</label>
+			</div>
+			<div style="display: table-cell;padding-left: 20px;border-bottom: 1px solid black;">
+				<%= @system.system_type %>
+			</div>
+		</div>
+		<div style="display: table-row;">
+			<div style="display: table-cell;text-align: right;width: 20%;border-bottom: 1px solid black; border-right: 1px solid black;">
+				<label>Status</label>
+			</div>
+			<div style="display: table-cell;padding-left: 20px;border-bottom: 1px solid black;">
+				<%= @system.status %>
+				</div>
+		</div>
+	</div>
+	<div style="display: table;width: 20%;padding-top: 10px;">
+		<div style="display:table-row;">
+			<div style="display:table-cell;background:#FFFF33;width:50%">
+				<%= link_to 'Edit', edit_system_path(:id => @system.id), remote: true %>
+			</div>
+			<div style="display:table-cell;background:#FF3333;width:50%">
+				<%= link_to 'Delete', system_path(:id => @system.id), 
+					method: :delete, data: { confirm: 'Are you sure?' } %>  
+			</div>
+		</div>
+	</div>	
+</div>

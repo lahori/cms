@@ -1,0 +1,59 @@
+
+  <script type="text/javascript" charset="utf8">
+    $(document).ready(function(){
+      $('#example').dataTable();
+    });
+  </script>
+  <div id="appliance_list" style="display: table; width: 100%;border-bottom: 1px solid black;">
+    <div style="display: table-row;">
+      <div style="display: table-cell;">
+        <h3>
+          <span>Appliance List</span>
+        </h3>
+      </div>
+      <div style="display: table-cell; float: right;"> 
+        <% add_url = "/systems/" + @system_id.to_s + "/appliances/new" %>
+        <%= button_to  "Add", add_url, :method => :get , remote: true %>
+      </div>
+    </div>
+  </div>  
+    
+  <table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Manufacturer</th>
+            <th>Model</th>
+            <th>Serial</th>
+            <th>GUID</th>
+            <th>IP</th>
+            <th>URL</th>
+            <th>User</th>
+            <th>Password</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @appliances.each do |appliance| %>
+            <tr>
+                <td><%= appliance.id %></td>
+                <td><%= appliance.manufacturer %></td>
+                <td><%= appliance.model %></td>
+                <td><%= appliance.serial %></td>
+                <td><%= appliance.guid %></td>
+                <td><%= appliance.ip_addr %></td>
+                <td><%= appliance.url %></td>
+                <td><%= appliance.user_name %></td>
+                <td><%= appliance.password %></td>
+                <td>
+                  <% details_url = "/appliances/" + appliance.id.to_s + "/details" %>
+                  <%= button_to  "details", details_url, :method => :get , remote: true %>
+                  <% appliance_delete_url = "/appliances/" + appliance.id.to_s %>
+                  <%= button_to "del", appliance_delete_url, :method => :delete, remote: true %>
+                  <button text="edit">edit</button>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <div id="appliance_details"></div>

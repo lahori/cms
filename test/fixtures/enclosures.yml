@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chasis_id: MyString
+  model: MyString
+  vendor_id: MyString
+  product_id: MyString
+  revision: MyString
+  total_bay_count: 1
+  used_bay_count: 1
+  serial_num: MyString
+  appliance: one
+
+two:
+  chasis_id: MyString
+  model: MyString
+  vendor_id: MyString
+  product_id: MyString
+  revision: MyString
+  total_bay_count: 1
+  used_bay_count: 1
+  serial_num: MyString
+  appliance: two

@@ -1,0 +1,57 @@
+<script type="text/javascript">
+  function showIPAddressFields() {
+
+    var appliance_type_name = document.getElementById("system_system_type") //$("#system_system_type :selected").text();
+    //alert("In showIPAddressFields");
+    var appliance_type_selected = appliance_type_name.options[appliance_type_name.selectedIndex].value;
+    var ip_div_content = "";
+
+    if (appliance_type_selected == "Appliance") {
+      ip_div_content = "<label>Appliance IP</label><input id='appliance_ip' type='text' size='30'>"
+    } else if (appliance_type_selected == "HA Cluster") {
+      ip_div_content = "<label>Node A IP</label><input id='nodeA_ip' type='text' size='30'><br>"
+      ip_div_content += "<label>Node B IP</label><input id='nodeB_ip' type='text' size='30'>"
+    }
+
+    var ip_div = document.getElementById("ips");
+    ip_div.innerHTML = ip_div_content;
+  }
+</script>
+<div id="new_system" style="background-color: #ffcccc">
+  <h3>Create a Nexenta Storage System</h3>
+  <%= form_for @system, url: {action: "create"}, :remote => true do |f| %>
+      <% if @system.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@system.errors.count, "error") %> prohibited this system from being saved:</h2>
+
+            <ul>
+              <% @system.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <%= f.label("System Name") %>
+      <%= f.text_field(:name) %>
+      <br>
+      <%= f.label("Purpose") %>
+      <%= f.text_field(:purpose) %>
+      <br>
+      <%= f.label("System Type") %>
+      <%= f.select(:system_type, [['Appliance', 'Appliance'], ['HA Cluster', 'Appliance']]) %>
+      <br>
+      <%= f.label("Status") %>
+      <%= f.text_field(:status) %>
+      <br>
+      <!--<div id="ips">
+        <%= f.fields_for :appliances do |builder| %>
+            <%= builder.label :ip_addr, "IP Address" %>
+            <%= builder.text_field :ip_addr %>
+        <% end %>
+      </div>-->
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+  <% end %>
+</div>

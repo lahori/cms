@@ -1,0 +1,63 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+#header {
+    background-color: white;
+    color:limegreen;
+    /*clear:both;*/
+    text-align:center;
+}
+#nexenta_img {
+    display: table-cell;
+}
+#menu_tab {
+}
+#system_tab{
+    padding: 0px;
+}
+#systems_div {
+    height:800px;
+    width:200px;
+    border-right-color: chocolate;
+    border-right-style: ridge;
+}
+#system_div {
+    height:800px;
+    min-width: 800px;
+}
+#context_tab {
+}
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+}
+.system_table {
+    display: table;
+}
+.system_row {
+    display: table-row;
+}
+.system_cell {
+    display: table-cell;
+}
+.tbl_inventory {
+    background-color: #a7b5cb;
+}
+tr.border_bottom td {
+    border-bottom:1pt solid black;
+}

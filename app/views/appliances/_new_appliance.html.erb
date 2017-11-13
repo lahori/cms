@@ -1,0 +1,44 @@
+<div id="new_appliance" style="background-color: #ffcccc">
+  <h3>Add System Appliance</h3>
+  <%= form_for @appliance, url: {action: "create"}, :remote => true do |f| %>
+      <% if @appliance.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@appliance.errors.count, "error") %> prohibited this appliance from being saved:</h2>
+
+            <ul>
+              <% @appliance.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <%= f.label("Manufacturer") %>
+      <%= f.text_field(:manufacturer) %>
+      <br>
+      <%= f.label("Model") %>
+      <%= f.text_field(:model) %>
+      <br>
+      <%= f.label("Serial") %>
+      <%= f.text_field(:serial) %>
+      <br>
+      <%= f.label("GUID") %>
+      <%= f.text_field(:guid) %>
+      <br>
+      <%= f.label("IP Addr") %>
+      <%= f.text_field(:ip_addr) %>
+      <br>
+      <%= f.label("User") %>
+      <%= f.text_field(:user_name) %>
+      <br>
+      <%= f.label("Password") %>
+      <%= f.text_field(:password) %>
+      <br>
+      <%= f.label("URI") %>
+      <%= f.text_field(:url) %>
+      <br>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+  <% end %>
+</div>

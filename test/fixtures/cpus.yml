@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chip_id: 1
+  model: MyString
+  vendor_id: MyString
+  cores: 1
+  frequency: 1
+  threads: 1
+  appliance: one
+
+two:
+  chip_id: 1
+  model: MyString
+  vendor_id: MyString
+  cores: 1
+  frequency: 1
+  threads: 1
+  appliance: two

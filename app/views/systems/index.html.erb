@@ -5,7 +5,9 @@
 
       <%= render partial: "systems_tree", object: @systems %>
       <div id="system_div" class="system_cell" style="padding:10px;">
-        <%= render partial: 'show_system' %>
+      	<% if @systems.any? %>
+      		<%= render partial: 'show_system' %>
+      	<% end %>	
       </div>
 
     </div>

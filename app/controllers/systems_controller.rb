@@ -8,16 +8,14 @@ class SystemsController < ApplicationController
   #######################################################################################
   def index
 
-
     @systems = System.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      @system = @systems[0]
-      #puts "First system id: " + @system.id.to_s
-      format.json { render json: @systems }
-    end
-
+      respond_to do |format|
+        format.html # index.html.erb
+        @system = @systems[0]
+        #puts "First system id: " + @system.id.to_s
+        format.json { render json: @systems }
+      end
   end
 
   #######################################################################################

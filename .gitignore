@@ -46,3 +46,7 @@ bower.json
 # Ignore Sublime Project Files
 /CMS.sublime-project
 /CMS.sublime-workspace
+
+# Ignore MAC OS Custom Attributes
+.DS_Store
+app/.DS_Store

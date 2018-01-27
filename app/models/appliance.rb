@@ -5,4 +5,5 @@ class Appliance < ApplicationRecord
   has_many :enclosures, dependent: :destroy
   has_many :hbas, dependent: :destroy
   has_many :nics, dependent: :destroy
+  has_many :configuration_pools, dependent: :destroy
 end

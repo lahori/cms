@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018223100) do
+ActiveRecord::Schema.define(version: 20180125010533) do
 
   create_table "appliances", force: :cascade do |t|
     t.string   "manufacturer", limit: 128
@@ -104,6 +104,22 @@ ActiveRecord::Schema.define(version: 20171018223100) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["appliance_id"], name: "index_nics_on_appliance_id"
+  end
+
+  create_table "pool_configurations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "redundancy"
+    t.integer  "max_devices"
+    t.integer  "vdev_size"
+    t.string   "media_type"
+    t.string   "disk_size"
+    t.string   "enclosures"
+    t.boolean  "enclosure_redundancy"
+    t.boolean  "force"
+    t.integer  "appliance_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["appliance_id"], name: "index_pool_configurations_on_appliance_id"
   end
 
   create_table "systems", force: :cascade do |t|

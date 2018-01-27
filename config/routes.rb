@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   resources :appliances do
   	get :details, on: :member
   end
+
+  resources :pool_configurations do
+  end
 end

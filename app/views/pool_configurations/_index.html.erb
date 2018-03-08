@@ -1,28 +1,83 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Pool Configurations</h1>
-
+<% disks = getDistinctDisksCount(@appliance.id) %>
+<% enclosures = getEnclosures(@appliance.id) %>
+<% dkeys = disks.keys %>
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th align="left">Enclosure Summary</th>
+      <th width="50px"></th>
+      <th align="left">Disk Drives Summary</th>
     </tr>
   </thead>
-
   <tbody>
-      <p> Appliance id: <%= @appliance.id %> </p>
-      <% if get_appliance_pool_configs(@appliance.id).nil? %>
-        <div style="border:2px dashed;background-color: #f4f7fa;margin: 30px 0;padding: 30px;">
-          <p>No Pool Configuration Found</p>
+    <tr>
+      <td valign="top">
+        <div style="width: 500px;">
+          <div class="divTable blueTable">
+            <div class="divTableHeading">
+              <div class="divTableRow">
+                <div class="divTableHead">Model</div>
+                <div class="divTableHead">ID</div>
+                <div class="divTableHead">Total Bays</div>
+                <div class="divTableHead">Used Bays</div>
+              </div>
+            </div>
+            <div class="divTableBody">
+              <% enclosures.each do |enclosure| %>
+                <div class="divTableRow">
+                  <div class="divTableCell"><%= enclosure[0] + " " + enclosure[1] %></div>
+                  <div class="divTableCell"><%= enclosure[2] %></div>
+                  <div class="divTableCell"><%= enclosure[3].to_s %></div>
+                  <div class="divTableCell"><%= enclosure[4].to_s %></div>
+                </div>
+                <% end %>
+            </div>
+          </div>
         </div>
-      <% else %>
-        <div style="border:2px dashed;background-color: #f4f7fa;margin: 30px 0;padding: 30px;">
-          <p>Pool Configuration Found</p>
+      </td>
+      <td width="50px"></td>
+      <td>
+        <div style="width: 500px;">
+          <div class="divTable blueTable">
+            <div class="divTableHeading">
+              <div class="divTableRow">
+                <div class="divTableHead">Drive Type</div>
+                <div class="divTableHead">Capacity</div>
+                <div class="divTableHead">Count</div>
+              </div>
+            </div>
+            <div class="divTableBody">
+              <% dkeys.each do |k| %>
+                <div class="divTableRow">
+                  <div class="divTableCell"><%= k[0].to_s %></div>
+                  <div class="divTableCell"><%= ActiveSupport::NumberHelper.number_to_human_size(k[1].to_s) %></div>
+                  <div class="divTableCell"><%= disks.fetch(k).to_s %></div>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
-      <% end %>
+      </td>
+    </tr>
+    <tr></tr>
+    <tr>
+      <td><h3>Pool Configurations Appliance Id: <%= @appliance.id %></h3></td>
+      <td width="50px"></td>
+      
+      <td align="right"><%= link_to 'New Pool Configuration', new_appliance_pool_configuration_path(@appliance), remote: true %></td>
+    </tr>
+    <tr>
+      <td colspan=3>
+        <% if get_appliance_pool_configs(@appliance.id).nil? %>
+          <div style="border:2px dashed;background-color: #f4f7fa;">
+            <p>No Pool Configuration Found</p>
+          </div>
+        <% else %>
+          <div style="border:2px solid;background-color: #f4f7fa; padding: 30px;">
+            <p>Pool Configuration Found</p>
+          </div>
+        <% end %>
+      </td>
+    </tr>  
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Pool Configuration', new_pool_configuration_path, remote: true %>

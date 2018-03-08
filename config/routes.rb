@@ -4,10 +4,13 @@ Rails.application.routes.draw do
     resource :appliances
   end
 
+  get 'appliances/detailslByName', to: 'appliances#details_by_name'
+  get 'appliances/poolConfig', to: 'pool_configurations#get_pool_config'
   resources :appliances do
+  	resources :pool_configurations
   	get :details, on: :member
   end
 
-  resources :pool_configurations do
-  end
+  
+
 end

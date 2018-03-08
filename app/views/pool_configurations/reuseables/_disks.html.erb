@@ -1,0 +1,73 @@
+<% disks = getDistinctDisksCount(@appliance.id) %>
+<% enclosures = getEnclosures(@appliance.id) %>
+<% dkeys = disks.keys %>
+<div id="disks_div">
+  <table>
+    <thead>
+      <tr>
+        <th align="left">Enclosure Summary</th>
+        <th width="50px"></th>
+        <th align="left">Disk Drives Summary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td valign="top">
+          <div style="width: 500px;">
+            <div class="divTable blueTable">
+              <div class="divTableHeading">
+                <div class="divTableRow">
+                  <div class="divTableHead">Model</div>
+                  <div class="divTableHead">ID</div>
+                  <div class="divTableHead">Total Bays</div>
+                  <div class="divTableHead">Used Bays</div>
+                </div>
+              </div>
+              <div class="divTableBody">
+                <% enclosures.each do |enclosure| %>
+                  <div class="divTableRow">
+                    <div class="divTableCell"><%= enclosure[0] + " " + enclosure[1] %></div>
+                    <div class="divTableCell"><%= enclosure[2] %></div>
+                    <div class="divTableCell"><%= enclosure[3].to_s %></div>
+                    <div class="divTableCell"><%= enclosure[4].to_s %></div>
+                  </div>
+                  <% end %>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td width="50px"></td>
+        <td>
+          <div style="width: 400px;">
+            <div class="divTable blueTable">
+              <div class="divTableHeading">
+                <div class="divTableRow">
+                  <div class="divTableHead">Drive Type</div>
+                  <div class="divTableHead">Capacity</div>
+                  <div class="divTableHead">Count</div>
+                </div>
+              </div>
+              <div class="divTableBody">
+                <% dkeys.each do |k| %>
+                  <div class="divTableRow">
+                    <div class="divTableCell"><%= k[0].to_s %></div>
+                    <div class="divTableCell"><%= ActiveSupport::NumberHelper.number_to_human_size(k[1].to_s) %></div>
+                    <div class="divTableCell"><%= disks.fetch(k).to_s %></div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div id="pool_config_div">
+
+        <td><h3>Pool Configurations Appliance Id: <%= @appliance.id %></h3></td>
+        <td width="50px"></td>
+        <td align="right"><%= link_to 'New Pool Configuration', new_pool_configuration_path, remote: true %></td>
+      </tr>
+    </tbody>
+  </table>

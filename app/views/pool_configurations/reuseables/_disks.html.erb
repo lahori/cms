@@ -1,5 +1,5 @@
-<% disks = getDistinctDisksCount(@appliance.id) %>
-<% enclosures = getEnclosures(@appliance.id) %>
+<% disks = getDistinctDisksCount(@pool_configuration.appliance_id) %>
+<% enclosures = getEnclosures(@pool_configuration.appliance_id) %>
 <% dkeys = disks.keys %>
 <div id="disks_div">
   <table>
@@ -65,9 +65,9 @@
 </div>
 </div id="pool_config_div">
 
-        <td><h3>Pool Configurations Appliance Id: <%= @appliance.id %></h3></td>
+        <td><h3>Pool Configurations Appliance Id: <%= @pool_configuration.appliance_id %></h3></td>
         <td width="50px"></td>
-        <td align="right"><%= link_to 'New Pool Configuration', new_pool_configuration_path, remote: true %></td>
+        <td align="right"><%= link_to 'New Pool Configuration', new_appliance_pool_configuration_path(@pool_configuration.appliance_id), remote: true %></td>
       </tr>
     </tbody>
   </table>

@@ -107,7 +107,7 @@ class PoolConfigurationsController < ApplicationController
     Rails.logger.debug params.inspect
     Rails.logger.debug("Done Inspecting PARAMS <-------------")
     @pool_config = PoolConfiguration.where("name = :config_name AND appliance_id = :id",
-      {config_name: params[:name], id: params[:appliance_id]})
+      {config_name: params[:name], id: params[:appliance_id]}).limit(1)
     respond_to do |format|
       #format.html
       format.js

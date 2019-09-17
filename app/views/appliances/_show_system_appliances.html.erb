@@ -1,4 +1,3 @@
-
   <script type="text/javascript" charset="utf8">
     $(document).ready(function(){
       $('#example').dataTable();
@@ -37,10 +36,10 @@
         <% @appliances.each do |appliance| %>
             <tr>
                 <td><%= appliance.id %></td>
+                <td><%= appliance.name %></td>
                 <td><%= appliance.manufacturer %></td>
                 <td><%= appliance.model %></td>
                 <td><%= appliance.serial %></td>
-                <td><%= appliance.guid %></td>
                 <td><%= appliance.ip_addr %></td>
                 <td><%= appliance.url %></td>
                 <td><%= appliance.user_name %></td>

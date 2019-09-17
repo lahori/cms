@@ -5,7 +5,7 @@ class AppliancesController < ApplicationController
   # GET /appliances
   # GET /appliances.json
   def index
-    puts "In Appliance Controller -> Action -> index"
+  
     @appliances = Appliance.all
 
   end
@@ -16,10 +16,21 @@ class AppliancesController < ApplicationController
   #######################################################################################
   def show
    
-    system = System.find(params[:system_id])
-    @system_id = system.id
-    
-    @appliances = system.appliances
+    @system = System.find(params[:system_id])
+    @system_id = @system.id
+    @appliances = @system.appliances
+
+    if ! @appliances.empty?
+      @appliance = @appliances[0]
+      @cpus = @appliance.cpus
+      @hbas = @appliance.hbas
+      @nics = @appliance.nics
+      @disks = @appliance.disks
+      @enclosures = @appliance.enclosures
+    else
+      Rails.logger.debug("*******************************************")
+      #render "new", system_id: @system_id
+    end
 
     respond_to do |format|
       #format.html # show.html.erb
@@ -33,6 +44,7 @@ class AppliancesController < ApplicationController
   #######################################################################################
   def new
     @appliance = Appliance.new
+    @current_appliance_action = 1
     @appliance.system_id = params[:system_id]
     respond_to do |format|
       format.html
@@ -45,6 +57,11 @@ class AppliancesController < ApplicationController
   # GET /appliances/1/edit
   #######################################################################################
   def edit
+    @appliance = Appliance.find(params[:id])
+    @current_appliance_action = 2
+    respond_to do |format|
+      format.js
+    end
   end
 
   #######################################################################################
@@ -53,7 +70,9 @@ class AppliancesController < ApplicationController
   #######################################################################################
   def create
     @appliance = Appliance.new(appliance_params)
-    #Rails.logger.debug("Appliance: #{@appliance.inspect}")
+    Rails.logger.debug params.inspect
+    Rails.logger.debug("*******************************************")
+    Rails.logger.debug("Appliance: #{@appliance.inspect}")
     
     ## Get Appliance Details (inventory) using REST connection provided in appliance_params
     #payload = {"username" => "root", "password" => "plusultra"}
@@ -149,6 +168,18 @@ class AppliancesController < ApplicationController
     end
   end
 
+  def details_by_name
+    Rails.logger.debug("Inspecting PARAMS ------------->")
+    Rails.logger.debug params.inspect
+    Rails.logger.debug("Done Inspecting PARAMS <-------------")
+    @appliance = Appliance.find_by name: params[:name]
+
+    respond_to do |format|
+      #format.html # show.html.erb
+      format.json {render json: @appliance}
+      #format.json { render json: @system }
+    end
+  end
   #######################################################################################
   # Private methods
   #######################################################################################
@@ -162,7 +193,7 @@ class AppliancesController < ApplicationController
     def appliance_params
       #params[:appliance]
       #params[:appliance].permit(:host_name, :ip_addr, :license, :machinesig, :port, :assigned_to, :assigned_from, :assigned_til, :system_id)
-      params.require(:appliance).permit(:manufacturer, :model, :serial, :guid, :ip_addr, :user_name, :password, :url, :system_id)
+      params.require(:appliance).permit(:name, :manufacturer, :model, :serial, :guid, :ip_addr, :user_name, :password, :url, :system_id, :pool_configuration)
     end
 
     def save_hbas (hbas)

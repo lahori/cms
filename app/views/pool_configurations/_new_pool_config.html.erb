@@ -1,0 +1,50 @@
+<div>
+  <%= render partial: "/pool_configurations/reuseables/disks", object: @pool_configuration.appliance_id %>
+</div>
+<div style="border:2px solid;background-color: #f4f7fa;margin: 30px 0;padding: 30px;">
+	<%= form_for @pool_configuration, url: {action: "create"}, :remote => true do |f| %>
+      <table>
+        <tr>
+          <td><%= f.label("Configuration Name") %></td>
+          <td><%= f.text_field(:name) %></td>
+        </tr>
+        <tr>
+          <td><%= f.label("Enclosure Level Redundancy") %></td>
+          <td><%= f.radio_button(:enclosure_redundancy, 'true') %>Yes <br>
+              <%= f.radio_button(:enclosure_redundancy, 'false') %>No
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label("Pool Redundancy") %></td>
+          <td><%= f.select(:redundancy, [['Stripe', 'stripe'], ['Mirror', 'mirror'], ['RAID-Z1','raidz1'], ['RAID-Z2','raidz2'], ['RAID-Z3','raidz3']]) %></td>
+        </tr>
+        <tr>
+          <td><%= f.label("Force create") %></td>
+          <td><%= f.select(:force, [['True', 'true'],['False', 'false']]) %></td>
+        </tr>
+        <tr>
+          <td><%= f.label("Drive Size") %></td>
+          <td><%= f.text_field(:disk_size) %></td>
+        </tr>
+        <tr>
+          <td><%= f.label("vDev Size") %></td>
+          <td><%= f.text_field(:vdev_size) %></td>
+        </tr>
+        <tr>
+          <td><%= f.label("Max Devices") %></td>
+          <td><%= f.text_field(:max_devices) %></td>
+        </tr>
+        <tr>
+          <td><%= f.label("Media Type") %></td>
+          <td><%= f.select(:media_type, [['HDD', 'hdd'],['SSD', 'ssd']]) %></td>
+        </tr>
+        <tr>
+          <td align="right"> 
+            <% cancel_url = "/systems/" + @system_id.to_s + "/appliances/new" %>
+            <%= button_to  "Cancel", cancel_url, :method => :get , remote: true %>
+          </td>
+          <td><%= f.submit %></td>
+        </tr>
+      </table>
+  <% end %>
+</div>

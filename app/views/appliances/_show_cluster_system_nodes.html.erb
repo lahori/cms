@@ -1,0 +1,68 @@
+<div id="appliance_list" style="display: table; width: 100%;">
+	<div style="display: table-row;">
+	  <div style="display: table-cell;">
+	    <h3>
+	      <span>Cluster System: <%= @system.name %></span>
+	    </h3>
+	  </div>
+	</div>
+</div>
+<!-- 	<div style="display: table-row; border-top: 1px solid black; border-bottom: 1px solid black;">
+	  	<% if @appliances.empty? %>
+	  		<div style="display: table-cell;">
+  				<h3>Node A / Node B</h3>
+  			</div>
+  		<% else %>
+  			<div style="display: table-cell;">
+  				<% @appliances.each_with_index do |appliance, index| %>
+	  				<% details_url = "/appliances/" + appliance.id.to_s + "/details" %>
+	  				<%= link_to  appliance.name, details_url, :method => :get , remote: true %>
+	  				<% if index == 0%> 
+	  					&nbsp;/&nbsp;
+	  					<% first_appliance_details_url = details_url %>
+	  				<% end %>	
+            	<% end %>
+            </div>		
+    	<% end %> 
+	  </div>
+	  <div style="display: table-cell; float: right;"> 
+	    <% add_url = "/systems/" + @system_id.to_s + "/appliances/new" %>
+	    <%= button_to  "Add", add_url, :method => :get , remote: true %>
+	  </div>
+	</div>
+</div> -->
+<% if @appliances.empty? %>
+	<div id="empty_appliance_list" style="display: table; width: 100%;">
+    	<div style="display: table-row;">
+      		<div style="display: table-cell; text-align: right; width: 100%;"> 
+        		<% add_url = "/systems/" + @system_id.to_s + "/appliances/new" %>
+        		<%= button_to  "Add", add_url, :method => :get , remote: true %>
+      		</div>
+    	</div>
+  		<div style="display: table-row;">
+      		<div style="display: table-cell; text-align: left; width: 100%;  border:2px dashed;">
+            	<p>No Appliances Found</p>
+        	</div>
+    	</div>
+    </div>
+<% else %>
+	<div id="appliance_list_div" style="display: table; width: 100%; margin-bottom: 10px;">
+    	<div style="display: table-row;">
+        	<div style="display: table-cell; font-weight: bold;">
+        		Nodes:&nbsp;&nbsp;
+            	<% @appliances.each_with_index do |appliance, index| %>
+              		<% details_url = "/appliances/" + appliance.id.to_s + "/details" %>
+              		<%= link_to  appliance.name, details_url, :method => :get , remote: true %>
+              		<% if index == 0%> 
+                		&nbsp;&nbsp;
+              		<% end %> 
+            	<% end %>
+          	</div>
+        	<div style="display: table-cell; text-align: right;"> 
+        		<% add_url = "/systems/" + @system_id.to_s + "/appliances/new" %>
+        		<%= button_to  "Add", add_url, :method => :get , remote: true %>
+      		</div>  	 
+        </div>
+    </div>
+<% end %> 
+<div id="cluster_nodes_div" style="background: #ffffff;"></div>

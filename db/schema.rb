@@ -10,20 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018223100) do
+ActiveRecord::Schema.define(version: 20180212194727) do
 
   create_table "appliances", force: :cascade do |t|
-    t.string   "manufacturer", limit: 128
-    t.string   "model",        limit: 128
-    t.string   "serial",       limit: 256
-    t.string   "guid",         limit: 128
-    t.string   "ip_addr",      limit: 128
-    t.string   "user_name",    limit: 128
-    t.string   "password",     limit: 64
-    t.string   "url",          limit: 128
+    t.string   "name",         limit: 256
+    t.string   "manufacturer"
+    t.string   "model"
+    t.string   "serial"
+    t.string   "ip_addr"
+    t.string   "user_name"
+    t.string   "password"
+    t.string   "url"
     t.integer  "system_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.index ["name"], name: "index_appliances_on_name", unique: true
     t.index ["system_id"], name: "index_appliances_on_system_id"
   end
 
@@ -104,6 +105,22 @@ ActiveRecord::Schema.define(version: 20171018223100) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["appliance_id"], name: "index_nics_on_appliance_id"
+  end
+
+  create_table "pool_configurations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "redundancy"
+    t.integer  "max_devices"
+    t.integer  "vdev_size"
+    t.string   "media_type"
+    t.string   "disk_size"
+    t.string   "enclosures"
+    t.boolean  "enclosure_redundancy"
+    t.boolean  "force"
+    t.integer  "appliance_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["appliance_id"], name: "index_pool_configurations_on_appliance_id"
   end
 
   create_table "systems", force: :cascade do |t|

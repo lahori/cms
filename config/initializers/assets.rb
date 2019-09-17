@@ -12,7 +12,7 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( jquery-ui.css )
 Rails.application.config.assets.precompile += %w( style.css )
-#Rails.application.config.assets.precompile += %w( jquery.js )
+Rails.application.config.assets.precompile += %w( jquery.js )
 Rails.application.config.assets.precompile += %w( jquery-ui.js )
 Rails.application.config.assets.precompile += %w( jquery-2.1.3.js )
 Rails.application.config.assets.precompile += %w( jstree.js )

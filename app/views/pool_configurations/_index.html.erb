@@ -1,6 +1,7 @@
 <% disks = getDistinctDisksCount(@appliance.id) %>
 <% enclosures = getEnclosures(@appliance.id) %>
 <% dkeys = disks.keys %>
+<% pool_configs = get_appliance_pool_configs(@appliance.id) %>
 <table>
   <thead>
     <tr>
@@ -68,13 +69,14 @@
     </tr>
     <tr>
       <td colspan=3>
-        <% if get_appliance_pool_configs(@appliance.id).nil? %>
+        <% if pool_configs.nil? %>
           <div style="border:2px dashed;background-color: #f4f7fa;">
             <p>No Pool Configuration Found</p>
           </div>
         <% else %>
           <div style="border:2px solid;background-color: #f4f7fa; padding: 30px;">
             <p>Pool Configuration Found</p>
+            <%= render partial: "/pool_configurations/reuseables/pool_configs", object: @pool_configs %>
           </div>
         <% end %>
       </td>

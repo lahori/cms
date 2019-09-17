@@ -1,0 +1,332 @@
+<script>
+  $(document).ready( function() {
+    $( "#appliance_tabs" ).tabs();
+    $('#accordion').accordion({
+        heightStyle: "content",
+        collapsible: true
+    });
+});
+</script>
+<div id="appliance_tabs">
+  <ul>
+    <li><a href="#node_tab">Appliance</a></li>
+    <li><a href="#inventory_tab">Inventory</a></li>
+    <li><a href="#pool_config_tab">Pools</a></li>
+    <li><a href="#network_config_tab">Networks</a></li>
+    <li><a href="#nfs_config_tab">NFS</a></li>
+  </ul>
+  <div id=node_tab>
+    <% if @appliances.empty? %>
+      <div style="border:2px dashed;background-color: #f4f7fa;">
+            <p>No Appliances Found</p>
+      </div>
+    <% else %>
+      <!-- <div id="appliance_div" style="display: table; width: 100%;"> -->
+      <div id="appliance_div">
+        <!-- <div style="display: table-row;">
+
+          <div style="display: table-cell;">
+            <% @appliances.each_with_index do |appliance, index| %>
+              <% details_url = "/appliances/" + appliance.id.to_s + "/details" %>
+              <%= link_to  appliance.name, details_url, :method => :get , remote: true %>
+              <% if index == 0%> 
+                &nbsp;/&nbsp;
+              <% end %> 
+            <% end %>
+          </div> 
+        </div> -->
+      </div>
+    <% end %>        
+  </div>
+  <div id=inventory_tab>
+    <% if @appliances.empty? %>
+      <div style="border:2px dashed;background-color: #f4f7fa;">
+            <p>No Appliances Found</p>
+      </div>
+    <% else %> 
+      <div id="accordion">
+        <h3>CPUs</h3>
+        <div>
+          <table id="tbl_inventory">
+            <thead>
+              <tr>
+                    <th class="tbl_inventory">
+                      <span>ID</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Model</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Vendor</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Frequency</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Core Count</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Thread Count</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @cpus.each do |cpu| %>
+                  <tr class="border_bottom">
+                    <td>
+                      <span><%= cpu.chip_id %></span>
+                    </td>
+                    <td>
+                      <span><%= cpu.model %></span>
+                    </td>
+                    <td>
+                      <span><%= cpu.vendor_id %></span>
+                    </td>
+                    <td>
+                      <span><%= cpu.frequency %></span>
+                    </td>
+                    <td>
+                      <span><%= cpu.cores %></span>
+                    </td>
+                    <td>
+                      <span><%= cpu.threads %></span>
+                    </td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+          </div>
+          <h3>Memory</h3>
+          <div>
+              <p>
+              Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+              purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+              velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+              suscipit faucibus urna.
+              </p>
+        </div>
+        <h3>HBAs</h3>
+        <div>
+          <table id="tbl_inventory">
+                <thead>
+                  <tr>
+                    <th class="tbl_inventory">
+                      <span>ID</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Model</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Product</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Vendor</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Description</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>HW Version</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>FW Version</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Driver</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Driver Version</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @hbas.each do |hba| %>
+                  <tr class="border_bottom">
+                    <td>
+                      <span><%= hba.adapter_id %></span>
+                    </td>
+                    <td>
+                      <span><%= hba.model %></span>
+                    </td>
+                    <td>
+                      <span><%= hba.product_id %></span>
+                    </td>
+                    <td>
+                      <span><%= hba.vendor_id %></span>
+                    </td>
+                    <td>
+                      <span><%= hba.adaptor_description %></span>
+                    </td>
+                    <td>
+                      <span><%= hba.hw_version %></span>
+                    </td>
+                    <td>
+                      <span><%= hba.fw_version %></span>
+                    </td>
+                    <td>
+                      <span><%= hba.driver_name %></span>
+                    </td>
+                    <td>
+                      <span><%= hba.driver_version %></span>
+                    </td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+        </div>
+        <h3>NICs</h3>
+        <div>
+          <table id="tbl_inventory">
+                <thead>
+                  <tr>
+                    <th class="tbl_inventory">
+                      <span>Name</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Media</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Speed</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Duplex</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>State</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>MAC</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @nics.each do |nic| %>
+                  <tr class="border_bottom">
+                    <td>
+                      <span><%= nic.name %></span>
+                    </td>
+                    <td>
+                      <span><%= nic.media_type %></span>
+                    </td>
+                    <td>
+                      <span><%= nic.speed %></span>
+                    </td>
+                    <td>
+                      <span><%= nic.duplex %></span>
+                    </td>
+                    <td>
+                      <span><%= nic.state %></span>
+                    </td>
+                    <td>
+                      <span><%= nic.mac %></span>
+                    </td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+        </div>
+        <h3>Disks</h3>
+        <div>
+              <table id="tbl_inventory">
+                <thead>
+                  <tr>
+                    <th class="tbl_inventory">
+                      <span>Name</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Model</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Vendor</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Product</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Serial</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Revision</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Size</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Media</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>State</span>
+                    </th>
+                    <th class="tbl_inventory">
+                      <span>Location</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @disks.each do |disk| %>
+                  <tr class="border_bottom">
+                    <td>
+                      <span><%= disk.logical_device %></span>
+                    </td>
+                    <td>
+                      <span><%= disk.model %></span>
+                    </td>
+                    <td>
+                      <span><%= disk.vendor_id %></span>
+                    </td>
+                    <td>
+                      <span><%= disk.product_id %></span>
+                    </td>
+                    <td>
+                      <span><%= disk.serial %></span>
+                    </td>
+                    <td>
+                      <span><%= disk.revision %></span>
+                    </td>
+                    <td>
+                      <span><%= disk.size %></span>
+                    </td>
+                    <td>
+                      <span><%= disk.media_type %></span>
+                    </td>
+                    <td>
+                      <span><%= disk.state %></span>
+                    </td>
+                    <td>
+                      <span><%= disk.location %></span>
+                    </td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+        </div>
+      <% end %>
+  </div>  
+  <div id="pool_config_tab">
+    <% if @appliances.empty? %>
+      <div style="border:2px dashed;background-color: #f4f7fa;">
+            <p>No Appliances Found</p>
+      </div>
+    <% else %>
+      <%= render partial: "pool_configurations/index", object: @appliance %>
+    <% end %>
+  </div>
+  <div id="network_config_tab">
+    <p>ed ut perspiciatis unde omnis iste natus error sit
+      voluptatem accusantium doloremque laudantium, totam rem aperiam.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </div>
+  <div id="nfs_config_tab">
+    <p>ed ut perspiciatis unde omnis iste natus error sit
+      voluptatem accusantium doloremque laudantium, totam rem aperiam.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </div>

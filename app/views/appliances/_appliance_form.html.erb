@@ -1,0 +1,105 @@
+<div id="new_appliance">
+  <% if @current_appliance_action == 1 %>
+    <h3>Add System Appliance</h3>
+  <% elsif @current_appliance_action == 2 %>
+    <h3>Update System Appliance</h3>
+  <% else %>
+    <h3>System Appliance</h3>
+  <% end %>
+
+  <%= form_for @appliance, :remote => true do |f| %>
+      <% if @appliance.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@appliance.errors.count, "error") %> prohibited this appliance from being saved:</h2>
+
+            <ul>
+              <% @appliance.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+    <div id="appliance_3_div" style="display: table; margin-bottom: 30px;">
+      <div style="display: table-row;">
+        <div style="display: table-cell; text-align: right;"><%= f.label("Name", size: 30) %></div>
+        <div style="display: table-cell;">&nbsp;</div>
+        <div style="display: table-cell;"><%= f.text_field(:name, size: 60) %></div>     
+      </div>
+      <div style="display: table-row;">
+        <div style="display: table-cell; text-align: right;"><%= f.label("Manufacturer", size: 30) %></div>
+        <div style="display: table-cell;">&nbsp;</div>
+        <div style="display: table-cell;"><%= f.text_field(:manufacturer, size: 60) %></div>      
+      </div>
+      <div style="display: table-row;">
+        <div style="display: table-cell; text-align: right;"><%= f.label("Model", size: 30) %></div>
+        <div style="display: table-cell;">&nbsp;</div>
+        <div style="display: table-cell;"><%= f.text_field(:model, size: 60) %></div>      
+      </div>
+      <div style="display: table-row;">
+        <div style="display: table-cell; text-align: right;"><%= f.label("Serial", size: 30) %></div>
+        <div style="display: table-cell;">&nbsp;</div>
+        <div style="display: table-cell;"><%= f.text_field(:serial, size: 60) %></div>      
+      </div>
+      <div style="display: table-row;">
+        <div style="display: table-cell; text-align: right;"><%= f.label("IP Addr", size: 30) %></div>
+        <div style="display: table-cell;">&nbsp;</div>
+        <div style="display: table-cell;"><%= f.text_field(:ip_addr, size: 60) %></div>      
+      </div>
+      <div style="display: table-row;">
+        <div style="display: table-cell; text-align: right;"><%= f.label("User", size: 30) %></div>
+        <div style="display: table-cell;">&nbsp;</div>
+        <div style="display: table-cell;"><%= f.text_field(:user_name, size: 60) %></div>      
+      </div>
+      <div style="display: table-row;">
+        <div style="display: table-cell; text-align: right;"><%= f.label("Password", size: 30) %></div>
+        <div style="display: table-cell;">&nbsp;</div>
+        <div style="display: table-cell;"><%= f.text_field(:password, size: 60) %></div>      
+      </div>
+      <div style="display: table-row;">
+        <div style="display: table-cell; text-align: right;"><%= f.label("URI", size: 30) %></div>
+        <div style="display: table-cell;">&nbsp;</div>
+        <div style="display: table-cell;"><%= f.text_field(:url, size: 60) %></div>      
+      </div>
+    </div>
+    <div style="display: table; width: 100%">
+      <div style="display: table-row;">
+      <div style="display: table-cell; width: 55%; text-align: right; font-weight: bold;">
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      </div>
+      <!-- <div style="display: table-cell;">&nbsp;</div> -->
+      <div style="display: table-cell; text-align: left; font-weight: bold; width: 45%;">
+        <%= button_to "Cancel", edit_appliance_path(:id => @appliance.id), :method => :get, remote: true %>
+      </div>
+    </div>
+    </div>
+<!--     <%= f.label("Name") %>
+    <%= f.text_field(:name) %>
+    <br>
+    <%= f.label("Manufacturer") %>
+    <%= f.text_field(:manufacturer) %>
+    <br> -->
+<!--     <%= f.label("Model") %>
+    <%= f.text_field(:model) %>
+    <br> -->    
+<!--     <%= f.label("Serial") %>
+    <%= f.text_field(:serial) %>
+    <br> -->
+<!--     <%= f.label("IP Addr") %>
+    <%= f.text_field(:ip_addr) %>
+    <br> -->
+<!--     <%= f.label("User") %>
+    <%= f.text_field(:user_name) %>
+    <br> -->
+<!--     <%= f.label("Password") %>
+    <%= f.text_field(:password) %>
+    <br>
+    <%= f.label("URI") %>
+    <%= f.text_field(:url) %>
+    <br>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %> -->
+</div>

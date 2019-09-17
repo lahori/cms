@@ -39,7 +39,7 @@
       <%= f.text_field(:purpose) %>
       <br>
       <%= f.label("System Type") %>
-      <%= f.select(:system_type, [['Appliance', 'Appliance'], ['HA Cluster', 'Appliance']]) %>
+      <%= f.select(:system_type, [['Appliance', 'standalone'], ['HA Cluster', 'cluster']]) %>
       <br>
       <%= f.label("Status") %>
       <%= f.text_field(:status) %>

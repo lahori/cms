@@ -1,1 +1,15 @@
-$("#system_div").html("<%= escape_javascript(render 'show_system_appliances')%>");
+<% case @system.system_type %>
+<% when 'standalone' %>
+	$("#system_div").html("<%= escape_javascript(render 'show_system_appliances')%>");
+<% when 'cluster' %>
+	<% if ! @appliances.empty? %>
+		$("#system_div").html("<%= escape_javascript(render 'show_cluster_system_nodes')%>");
+		$("#cluster_nodes_div").html("<%= escape_javascript(render partial: 'list_appliances') %>");
+		$("#appliance_div").html("<%= escape_javascript(render partial: 'show_appliance_details') %>");
+	<% else %>
+		$("#system_div").html("<%= escape_javascript(render 'show_cluster_system_nodes')%>");
+	<% end %>
+
+<% else %>
+	<% puts "Need to show error page" %>
+<% end %>

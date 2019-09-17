@@ -5,7 +5,7 @@ class AppliancesController < ApplicationController
   # GET /appliances
   # GET /appliances.json
   def index
-    puts "In Appliance Controller -> Action -> index"
+  
     @appliances = Appliance.all
 
   end
@@ -16,10 +16,21 @@ class AppliancesController < ApplicationController
   #######################################################################################
   def show
    
-    system = System.find(params[:system_id])
-    @system_id = system.id
-    
-    @appliances = system.appliances
+    @system = System.find(params[:system_id])
+    @system_id = @system.id
+    @appliances = @system.appliances
+
+    if ! @appliances.empty?
+      @appliance = @appliances[0]
+      @cpus = @appliance.cpus
+      @hbas = @appliance.hbas
+      @nics = @appliance.nics
+      @disks = @appliance.disks
+      @enclosures = @appliance.enclosures
+    else
+      Rails.logger.debug("*******************************************")
+      #render "new", system_id: @system_id
+    end
 
     respond_to do |format|
       #format.html # show.html.erb
@@ -33,6 +44,7 @@ class AppliancesController < ApplicationController
   #######################################################################################
   def new
     @appliance = Appliance.new
+    @current_appliance_action = 1
     @appliance.system_id = params[:system_id]
     respond_to do |format|
       format.html
@@ -45,6 +57,11 @@ class AppliancesController < ApplicationController
   # GET /appliances/1/edit
   #######################################################################################
   def edit
+    @appliance = Appliance.find(params[:id])
+    @current_appliance_action = 2
+    respond_to do |format|
+      format.js
+    end
   end
 
   #######################################################################################

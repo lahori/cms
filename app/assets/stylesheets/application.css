@@ -63,7 +63,6 @@ tr.border_bottom td {
 }
 /************ CSS For Div Table ****************/
 div.blueTable {
-  border: 1px solid #1C6EA4;
   background-color: #EEEEEE;
   width: 100%;
   text-align: left;
@@ -133,3 +132,40 @@ div.blueTable {
 .divTableHeading { display: table-header-group;}
 .divTableFoot { display: table-footer-group;}
 .divTableBody { display: table-row-group;}
+
+
+/************ CSS For My Div Table ****************/
+div.myTable {
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.table.myTable { display: table; }
+.table.myTable .cell {
+border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+.row { display: table-row; height: 10px; }
+.cell { display: table-cell; }
+
+
+table, th {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  solid;background-color: #f4f7fa;
+}
+
+tr {
+}
+td {
+  vertical-align: bottom;
+  width: 50%;
+  padding: 10px;
+}

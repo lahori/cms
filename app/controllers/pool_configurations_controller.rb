@@ -5,6 +5,11 @@ class PoolConfigurationsController < ApplicationController
   # GET /pool_configurations.json
   def index
     @pool_configurations = PoolConfiguration.all
+    respond_to do |format|
+      #format.html
+      format.js
+      format.json { render json: @pool_configurations }
+    end
   end
 
   # GET /pool_configurations/1

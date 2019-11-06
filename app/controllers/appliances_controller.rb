@@ -84,13 +84,13 @@ class AppliancesController < ApplicationController
     enclosures = appliance_inventory.enclosures['data']
     disks = appliance_inventory.disks['data']
     nics = appliance_inventory.nics['data']
-    # Rails.logger.debug("Appliance: " + appliance_inventory.token.to_s)
-    # Rails.logger.debug("Memory: " + @memory.to_s)
-    # Rails.logger.debug("hba: " + hbas.to_s)
-    #Rails.logger.debug("CPUs: " + cpus.to_s)
-    #Rails.logger.debug("Enclosures: " + enclosures.to_s)
-    # Rails.logger.debug("Disks: " + disks.to_s)
-    # Rails.logger.debug("NICs: " + nics.to_s)
+    Rails.logger.debug("Appliance: " + appliance_inventory.token.to_s)
+    Rails.logger.debug("Memory: " + @memory.to_s)
+    Rails.logger.debug("hba: " + hbas.to_s)
+    Rails.logger.debug("CPUs: " + cpus.to_s)
+    Rails.logger.debug("Enclosures: " + enclosures.to_s)
+    Rails.logger.debug("Disks: " + disks.to_s)
+    Rails.logger.debug("NICs: " + nics.to_s)
     @appliance.system_id = params[:system_id]
     respond_to do |format|
       if @appliance.save

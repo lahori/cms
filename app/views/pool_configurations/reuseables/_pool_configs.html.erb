@@ -1,2 +1,47 @@
-<% pool_configs.each do |pool| %>
-	
+<table style="border: none;">
+   <tr>
+   <% i = 0 %>
+   <% pool_configs.each do |pool| %>
+   <td>
+      <table >
+         <tr>
+            <th colspan="2"><%= pool.name %></th>
+         </tr>
+         <tr>
+            <td style="padding-left: 100px;">Pool Redundancy</td>
+            <td><%= pool.redundancy %>
+            </td>
+         </tr>
+         <tr>
+            <td style="padding-left: 100px;">Max Data Devices</td>
+            <td><%= pool.max_devices %></td>
+         </tr>
+         <tr>
+            <td style="padding-left: 100px;">Vdev Size</td>
+            <td><%= pool.vdev_size %></td>
+         </tr>
+         <tr>
+            <td style="padding-left: 100px;">Media Type</td>
+            <td><%= pool.media_type %></td>
+         </tr>
+         <tr>
+            <td style="padding-left: 100px;">Disk Size</td>
+            <td><%= pool.disk_size %></td>
+         </tr>
+         <tr>
+            <td style="padding-left: 100px;">Pool Size</td>
+            <td>
+               <%= get_pool_size(pool.redundancy, pool.max_devices.to_i, pool.disk_size, pool.vdev_size.to_i) %>
+            </td>
+         </tr>
+      </table>
+   </td>
+      <% x = i % 2 %>
+      <% if x != 0 %>
+         </tr>
+         <tr>
+      <% end %>
+      <% i += 1 %>
+   <% end %>
+</tr>
+</table>

@@ -30,6 +30,8 @@ class SystemsController < ApplicationController
       #format.html # show.html.erb
       format.js {}
       format.json { render json: @system }
+      #format.yaml { render yaml: @system }
+      format.yaml {render :text => @system.to_yaml, :content_type => 'text/yaml'}
     end
 
 

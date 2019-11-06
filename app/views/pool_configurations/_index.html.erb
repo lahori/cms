@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th align="left">Enclosure Summary</th>
+      <th align="left">Enclosure</th>
       <th width="50px"></th>
       <th align="left">Disk Drives Summary</th>
     </tr>
@@ -74,9 +74,8 @@
             <p>No Pool Configuration Found</p>
           </div>
         <% else %>
-          <div style="border:2px solid;background-color: #f4f7fa; padding: 30px;">
-            <p>Pool Configuration Found</p>
-            <%= render partial: "/pool_configurations/reuseables/pool_configs", object: @pool_configs %>
+          <div style="border:2px solid;padding: 20px;">
+            <%= render partial: "/pool_configurations/reuseables/pool_configs", object: pool_configs %>
           </div>
         <% end %>
       </td>
